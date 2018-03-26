@@ -50,9 +50,7 @@ for i in range(0,int(numberOfReadPairs)):
 	readLength1 = getReadLength()
 	readLength2 = getReadLength()
 	read1 = assembly[startOfRead:startOfRead+readLength1]
-	#read2 = assembly[startOfRead+insertLength:startOfRead+insertLength+readLength2:-1]
 	read2 = assembly[startOfRead+insertLength-1:startOfRead+insertLength-readLength2-1:-1]
-	myRand = random.random()
 
 	#fastq format is a repeating sequence of 4 lines that look like this
 	#@id		id can be anything but should be unique and perfectly paired between paired reads
@@ -65,6 +63,7 @@ for i in range(0,int(numberOfReadPairs)):
 	#In normal fastq data there's no way to tell which read is forwards and which is backwards.
 	#Here read1 is forward and read2 is backward, so we randomize which gets printed to each file
 	#to simulate the normal uncertainty.
+	myRand = random.random()
 	if myRand < .5:
 		fastqFile1.write(output1 + "\n")
 		fastqFile2.write(output2 + "\n")
@@ -77,4 +76,3 @@ for i in range(0,int(numberOfReadPairs)):
 
 fastqFile1.close()
 fastqFile2.close()
-
