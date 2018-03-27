@@ -12,15 +12,17 @@
 import random
 import sys
 import sqlite3
+import os
 import helperFunctions
 
-#arguments: Reps, minCoverage, maxCoverage, stepCoverage, assemblyFile
-#Example: python splitAssembly.py 2 20 40 10 data/MAB.ATCC19977.fasta
+#arguments: Reps, minCoverage, maxCoverage, stepCoverage, assemblyFile, outputDirectory
+#Example: python splitAssembly.py 2 20 20 10 data/MAB.ATCC19977.fasta data
 repsForEachCoverage = int(sys.argv[1])
 minAverageCoverage = int(sys.argv[2])
 maxAverageCoverage = int(sys.argv[3])
 stepAverageCoverage = int(sys.argv[4])
 assemblyFile = sys.argv[5]
+outputDirectory = sys.argv[6]
 
 dbConnection = sqlite3.connect('LengthDistribution.db')
 dbCursor = dbConnection.cursor()
@@ -42,7 +44,7 @@ assembly = assembly + assembly[0:1000]
 
 for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCoverage):
 	for rep in range (0, repsForEachCoverage):
-		baseFilename = 'data/MAB_C'+str(coverage) + '_R' + str(rep)
+		baseFilename = outputDirectory + '/MAB_C'+str(coverage) + '_R' + str(rep)
 		fastqFile1 = open(baseFilename + "_pair1.fastq", "w")
 		fastqFile2 = open(baseFilename + "_pair2.fastq", "w")
 
@@ -85,3 +87,6 @@ for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCover
 
 		fastqFile1.close()
 		fastqFile2.close()
+		#gzip the files
+		os.system('gzip -f ' + baseFilename + "_pair1.fastq")
+		os.system('gzip -f ' + baseFilename + "_pair2.fastq")
