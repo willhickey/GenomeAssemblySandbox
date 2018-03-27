@@ -69,7 +69,7 @@ for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCover
 			#+
 			#phred		series of phred scores, same length as the read. hardcoding "I" here for now
 			output1 = "@" + str(headerSequence) + "\n" + read1 + "\n+\n" + "I"*readLength1
-			output2 = "@" + str(headerSequence) + "\n" + read2 + "\n+\n" + "I"*readLength2
+			output2 = "@" + str(headerSequence) + "\n" + helperFunctions.dnaComplement(read2) + "\n+\n" + "I"*readLength2
 
 			#In normal fastq data there's no way to tell which read is forwards and which is backwards.
 			#Here read1 is forward and read2 is backward, so we randomize which gets printed to each file

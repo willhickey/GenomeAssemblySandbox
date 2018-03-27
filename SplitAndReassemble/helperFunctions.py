@@ -15,3 +15,16 @@ def getReadLength(cursor, nominalReadLength, direction):
 	##could use some error handling here...
 	#cursor.execute(sql, (myRand, myRand, nominalReadLength, direction))
 	#return cursor.fetchone()[0]
+
+# flip all the bases, like this: C <-> G and A <=> T
+def dnaComplement(inputRead):
+	# C <-> G
+	outputRead = inputRead.replace('C', 'Z')
+	outputRead = outputRead.replace('G', 'C')
+	outputRead = outputRead.replace('Z', 'G')
+
+	# A <=> T
+	outputRead = outputRead.replace('A', 'Z')
+	outputRead = outputRead.replace('T', 'A')
+	outputRead = outputRead.replace('Z', 'T')
+	return outputRead
