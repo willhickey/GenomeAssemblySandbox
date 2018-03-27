@@ -45,8 +45,8 @@ assembly = assembly + assembly[0:1000]
 for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCoverage):
 	for rep in range (0, repsForEachCoverage):
 		baseFilename = outputDirectory + '/MAB_C'+str(coverage) + '_R' + str(rep)
-		fastqFile1 = open(baseFilename + "_pair1.fastq", "w")
-		fastqFile2 = open(baseFilename + "_pair2.fastq", "w")
+		fastqFile1 = open(baseFilename + "_pair1.fastq", "w", newline='')
+		fastqFile2 = open(baseFilename + "_pair2.fastq", "w", newline='')
 
 		headerSequence = 0
 		#coverage = 100
@@ -76,8 +76,8 @@ for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCover
 			#to simulate the normal uncertainty.
 			#myRand = random.random()
 			#if myRand < .5:
-			fastqFile1.write(output1 + "\n")
-			fastqFile2.write(output2 + "\n")
+			fastqFile1.write(output1 + '\n')
+			fastqFile2.write(output2 + '\n')
 			#else:
 			#	fastqFile1.write(output2 + "\n")
 			#	fastqFile2.write(output1 + "\n")
