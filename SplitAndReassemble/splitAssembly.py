@@ -74,13 +74,13 @@ for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCover
 			#In normal fastq data there's no way to tell which read is forwards and which is backwards.
 			#Here read1 is forward and read2 is backward, so we randomize which gets printed to each file
 			#to simulate the normal uncertainty.
-			myRand = random.random()
-			if myRand < .5:
-				fastqFile1.write(output1 + "\n")
-				fastqFile2.write(output2 + "\n")
-			else:
-				fastqFile1.write(output2 + "\n")
-				fastqFile2.write(output1 + "\n")
+			#myRand = random.random()
+			#if myRand < .5:
+			fastqFile1.write(output1 + "\n")
+			fastqFile2.write(output2 + "\n")
+			#else:
+			#	fastqFile1.write(output2 + "\n")
+			#	fastqFile2.write(output1 + "\n")
 			headerSequence = headerSequence + 1
 			#print("Forward from " + str(startOfRead) + ": " + read1)
 			#print("Backward from " + str(startOfRead + insertLength) + ": " + read2)
