@@ -39,9 +39,9 @@ fastaFile.close()
 assembly = assembly.replace("\n", "")
 assemblyLength = len(assembly)
 
-#add the first 1000 characters to the end so we don't read off the end
+#add the first 10000 characters to the end so we don't read off the end
 #the genome is circular so a read that wraps around to the start is fine
-assembly = assembly + assembly[0:1000]
+assembly = assembly + assembly[0:10000]
 #for readLength in range(200, 4001, 200):
 for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCoverage):
 	for rep in range (0, repsForEachCoverage):
@@ -69,8 +69,8 @@ for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCover
 			#read		GATC
 			#+
 			#phred		series of phred scores, same length as the read. hardcoding "I" here for now
-			output1 = "@" + str(headerSequence) + "\n" + read1 + "\n+\n" + "I"*readLength1
-			output2 = "@" + str(headerSequence) + "\n" + helperFunctions.dnaComplement(read2) + "\n+\n" + "I"*readLength2
+			output1 = "@" + str(headerSequence) + "\n" + read1 + "\n+\n" + "BI"*readLength1
+			output2 = "@" + str(headerSequence) + "\n" + helperFunctions.dnaComplement(read2) + "\n+\n" + "BI"*readLength2
 
 			#In normal fastq data there's no way to tell which read is forwards and which is backwards.
 			#Here read1 is forward and read2 is backward, so we randomize which gets printed to each file
