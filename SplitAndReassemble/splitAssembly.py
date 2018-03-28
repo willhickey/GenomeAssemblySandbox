@@ -57,7 +57,7 @@ for coverage in range(minAverageCoverage, maxAverageCoverage+1, stepAverageCover
 		for i in range(0,int(numberOfReadPairs)):
 			#startOfRead = random.randrange(0, assemblyLength, 1)
 			startOfRead = random.randrange(0, assemblyLength, 1)
-			insertLength = helperFunctions.getInsertLength()
+			insertLength = 2*readLength + 400	#helperFunctions.getInsertLength()
 			readLength1 = readLength	#helperFunctions.getReadLength(dbCursor, 250, 'F')
 			readLength2 = readLength	#helperFunctions.getReadLength(dbCursor, 250, 'B')
 			#print("Lengths: " + str(readLength1) + ", " + str(readLength2))
